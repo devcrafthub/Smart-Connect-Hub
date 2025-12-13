@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Connect Hub | Home</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0d0a16, #11001f, #1a0030);
+        color: #fff;
+    }
+
+    /* Navbar */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav .logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #d8b4ff;
+        letter-spacing: 1px;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #eee;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #d8b4ff;
+    }
+
+    .btn-login {
+        padding: 10px 20px;
+        background: linear-gradient(90deg,#6a0dad,#9d00ff);
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-login:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px #9d00ff;
+    }
+
+    /* Hero Section */
+    .hero {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 120px 20px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        color: #e0c3ff;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 18px;
+        opacity: 0.8;
+        margin-top: 10px;
+    }
+
+    .hero .btn-explore {
+        margin-top: 25px;
+        padding: 14px 30px;
+        background: linear-gradient(90deg,#7a00b3,#b300ff);
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: 0.3s;
+    }
+
+    .btn-explore:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #b300ff;
+    }
+
+    /* Sections */
+    .section-title {
+        text-align: center;
+        font-size: 28px;
+        margin-top: 80px;
+        margin-bottom: 20px;
+        color: #d5afff;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .card {
+        width: 280px;
+        background: rgba(255,255,255,0.07);
+        padding: 25px;
+        border-radius: 18px;
+        backdrop-filter: blur(8px);
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 25px rgba(110, 0, 160, 0.4);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(160, 0, 220, 0.6);
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+        color: #e0c3ff;
+    }
+
+    .card p {
+        opacity: 0.8;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+        margin-top: 80px;
+        padding: 20px;
+        text-align: center;
+        background: rgba(255,255,255,0.05);
+        font-size: 14px;
+        color: #cfa7ff;
+        letter-spacing: 1px;
+    }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Smart Connect Hub</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Clubs</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+    <a href="login.html" class="btn-login">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Discover Events & Join Clubs<br>Across Your Campus🎉</h1>
+        <p>Experience a seamless college life. Attend events, explore clubs,<br>connect with people and grow your skills.</p>
+        <a class="btn-explore" href="#">Explore Now</a>
+    </div>
+</section>
+
+<!-- EVENTS SECTION -->
+<h2 class="section-title">Upcoming Events</h2>
+
+<div class="cards">
+    <div class="card">
+        <h3>Tech Workshop</h3>
+        <p>Hands-on workshop on Web Development for beginners.</p>
+    </div>
+
+    <div class="card">
+        <h3>Music Fest</h3>
+        <p>Enjoy live performances and band events at the auditorium.</p>
+    </div>
+
+    <div class="card">
+        <h3>Coding Contest</h3>
+        <p>Compete with the best coders in your college and win prizes.</p>
+    </div>
+</div>
+
+<!-- CLUB SECTION -->
+<h2 class="section-title">Top Clubs</h2>
+
+<div class="cards">
+    <div class="card">
+        <h3>Robotics Club</h3>
+        <p>Build, program, and innovate with like-minded creators.</p>
+    </div>
+
+    <div class="card">
+        <h3>Sports Club</h3>
+        <p>Join your favorite sports, tournaments, and fitness events.</p>
+    </div>
+
+    <div class="card">
+        <h3>Art & Culture Club</h3>
+        <p>Showcase your creativity through dance, art, and cultural events.</p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    © 2025 Campus Events & Club Management System — All Rights Reserved
+</footer>
+
+</body>
+</html>
