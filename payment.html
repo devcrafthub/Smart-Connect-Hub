@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment & Wallet | Campus Event Portal</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0b0b0f;
+        color: #fff;
+    }
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        background: #1a001f;
+        position: fixed;
+        padding: 20px 0;
+        border-right: 2px solid #6a0dad;
+    }
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #b56bff;
+    }
+    .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        color: #d9b3ff;
+        text-decoration: none;
+        font-size: 16px;
+        border-left: 4px solid transparent;
+        transition: 0.3s;
+    }
+    .sidebar a:hover {
+        background: #6a0dad;
+        border-left: 4px solid #d9b3ff;
+    }
+
+    .content {
+        margin-left: 270px;
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 25px;
+        margin-bottom: 15px;
+        color: #c77dff;
+    }
+
+    .card {
+        background: #150017;
+        border: 1px solid #6a0dad;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0px 0px 12px #6a0dad55;
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+        color: #e4b3ff;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        background: #6a0dad;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        background: #8a2be2;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #6a0dad;
+    }
+    th {
+        background: #37003a;
+        color: #d9b3ff;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        background: #0e0011;
+        border: 1px solid #6a0dad;
+        color: white;
+        border-radius: 6px;
+        margin-top: 8px;
+    }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Payment Panel</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Wallet</a>
+    <a href="#">Payments</a>
+    <a href="#">Transactions</a>
+    <a href="#">Sponsors</a>
+    <a href="#">Refunds</a>
+    <a href="#">Admin Earnings</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <!-- Wallet Balance -->
+    <div class="card">
+        <h3>💰 Student Wallet Balance</h3>
+        <p>Available Balance: <b style="color:#b56bff;">₹520</b></p>
+        <button class="btn">Add Money</button>
+    </div>
+
+    <!-- Event Fee Payment -->
+    <div class="card">
+        <h3>🎫 Event Fee Collection</h3>
+        <label>Select Event</label>
+        <select>
+            <option>Tech Quiz – ₹50</option>
+            <option>Hackathon – ₹200</option>
+            <option>Dance Battle – ₹100</option>
+        </select>
+
+        <label>Payment Method</label>
+        <select>
+            <option>Wallet</option>
+            <option>UPI</option>
+            <option>Net Banking</option>
+            <option>Card</option>
+        </select>
+
+        <button class="btn">Pay Now</button>
+    </div>
+
+    <!-- Transactions -->
+    <div class="card">
+        <h3>📜 Transaction History</h3>
+        <table>
+            <tr>
+                <th>Date</th><th>Event</th><th>Amount</th><th>Status</th>
+            </tr>
+            <tr>
+                <td>12 Dec</td><td>Hackathon</td><td>₹200</td><td>Paid</td>
+            </tr>
+            <tr>
+                <td>10 Dec</td><td>Dance Battle</td><td>₹100</td><td>Refunded</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Sponsor Payments -->
+    <div class="card">
+        <h3>🏢 Sponsor Payments</h3>
+        <label>Sponsor Name</label>
+        <input type="text" placeholder="Enter sponsor name">
+
+        <label>Amount (₹)</label>
+        <input type="number" placeholder="Enter amount">
+
+        <button class="btn">Record Payment</button>
+    </div>
+
+    <!-- Refund Automation -->
+    <div class="card">
+        <h3>↩ Refund Automation</h3>
+        <label>Select Transaction</label>
+        <select>
+            <option>Hackathon – ₹200</option>
+            <option>Dance Battle – ₹100</option>
+        </select>
+        <button class="btn">Process Refund</button>
+    </div>
+
+    <!-- Admin Earnings -->
+    <div class="card">
+        <h3>📊 Admin Earnings Dashboard</h3>
+        <p>Total Earnings: <b style="color:#b56bff;">₹12,500</b></p>
+        <p>Pending Amount: <b style="color:#ffccff;">₹1,300</b></p>
+    </div>
+
+</div>
+
+</body>
+</html>

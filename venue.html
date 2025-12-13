@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Venue Booking System</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0d0b14;
+        font-family: Arial, sans-serif;
+        color: #e2d6ff;
+    }
+
+    header {
+        background: linear-gradient(90deg, #6a0dad, #421064);
+        padding: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        background: #1a1524;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 12px rgba(110, 50, 200, 0.4);
+    }
+
+    h2 {
+        color: #c792ff;
+        margin-top: 0;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        background: #150f1f;
+        border: 1px solid #7645c7;
+        border-radius: 8px;
+        margin-top: 5px;
+        color: #e6d7ff;
+        margin-bottom: 15px;
+    }
+
+    button {
+        background: #6a0dad;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #8d2aff;
+    }
+
+    .calendar {
+        border-collapse: collapse;
+        width: 100%;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .calendar th, .calendar td {
+        padding: 12px;
+        border: 1px solid #5f3b95;
+        text-align: center;
+    }
+
+    .booked {
+        background: #9c27b0;
+        color: white;
+    }
+
+    .pending {
+        background: #673ab7;
+    }
+
+    .approved {
+        background: #0fa41d;
+    }
+
+    .rejected {
+        background: #b71c1c;
+    }
+</style>
+</head>
+<body>
+
+<header>🏛 Venue Booking System</header>
+
+<div class="container">
+
+    <!-- Venue Availability -->
+    <div class="card">
+        <h2>Real-time Venue Availability</h2>
+        <table class="calendar" id="calendarTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="calendarBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="card">
+        <h2>Book a Venue</h2>
+
+        <label>Event Name</label>
+        <input type="text" id="eventName" placeholder="Enter Event Name">
+
+        <label>Select Venue</label>
+        <select id="venue">
+            <option value="Auditorium">Auditorium</option>
+            <option value="Seminar Hall">Seminar Hall</option>
+            <option value="Conference Room">Conference Room</option>
+            <option value="Ground">Ground</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" id="date">
+
+        <button onclick="submitBooking()">Submit Request</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="card">
+        <h2>Admin Approval Panel</h2>
+        <table class="calendar" id="adminTable">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Venue</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="adminBody"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<script>
+let bookings = [];
+
+// Auto-load today's next 7 days calendar
+function loadCalendar() {
+    let tbody = document.getElementById("calendarBody");
+    tbody.innerHTML = "";
+
+    let today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+        let d = new Date();
+        d.setDate(today.getDate() + i);
+
+        let dateStr = d.toISOString().split("T")[0];
+
+        // Check booking
+        let match = bookings.find(b => b.date === dateStr && b.status === "Approved");
+
+        let row = `
+            <tr>
+                <td>${dateStr}</td>
+                <td>${match ? match.venue : "-"}</td>
+                <td class="${match ? 'booked' : ''}">
+                    ${match ? "Booked" : "Available"}
+                </td>
+            </tr>
+        `;
+
+        tbody.innerHTML += row;
+    }
+}
+
+// Booking function with conflict detection
+function submitBooking() {
+    let eventName = document.getElementById("eventName").value;
+    let venue = document.getElementById("venue").value;
+    let date = document.getElementById("date").value;
+
+    if (!eventName || !venue || !date) {
+        alert("Fill all fields!");
+        return;
+    }
+
+    // Conflict check
+    let conflict = bookings.find(b => b.date === date && b.venue === venue && b.status !== "Rejected");
+
+    if (conflict) {
+        alert("❌ Venue already booked or pending. Choose another date.");
+        return;
+    }
+
+    bookings.push({
+        eventName,
+        venue,
+        date,
+        status: "Pending"
+    });
+
+    alert("✔ Booking Request Submitted!");
+
+    loadAdminTable();
+    loadCalendar();
+}
+
+// Admin Table
+function loadAdminTable() {
+    let tbody = document.getElementById("adminBody");
+    tbody.innerHTML = "";
+
+    bookings.forEach((b, index) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${b.eventName}</td>
+                <td>${b.venue}</td>
+                <td>${b.date}</td>
+                <td class="${b.status.toLowerCase()}">${b.status}</td>
+                <td>
+                    <button onclick="approve(${index})">Approve</button>
+                    <button onclick="reject(${index})" style="background:red;">Reject</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// Approve Booking
+function approve(i) {
+    bookings[i].status = "Approved";
+    alert("✔ Venue Approved! Reminder Sent!");
+    loadAdminTable();
+    loadCalendar();
+}
+
+// Reject Booking
+function reject(i) {
+    bookings[i].status = "Rejected";
+    alert("❌ Booking Rejected.");
+    loadAdminTable();
+    loadCalendar();
+}
+
+// Initial load
+loadCalendar();
+loadAdminTable();
+</script>
+
+</body>
+</html>

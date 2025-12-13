@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000, #250036, #4a007a);
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100%;
+            background: rgba(20, 0, 30, 0.55);
+            backdrop-filter: blur(14px);
+            padding: 25px;
+            border-right: 1px solid rgba(200, 150, 255, 0.2);
+            box-shadow: 2px 0 12px rgba(150, 0, 255, 0.2);
+        }
+
+        .sidebar h2 {
+            color: #d8b4ff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #dfc6ff;
+            font-size: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(150, 50, 255, 0.35);
+            box-shadow: 0 0 10px rgba(150, 50, 255, 0.4);
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #e7ccff;
+        }
+
+        .header .profile {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #e7ccff;
+        }
+
+        /* STAT CARDS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: rgba(80, 0, 120, 0.35);
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(200, 150, 255, 0.2);
+            box-shadow: 0 0 20px rgba(120, 0, 210, 0.3);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 30px rgba(160, 80, 255, 0.45);
+        }
+
+        .stat-card h3 {
+            font-size: 20px;
+            color: #e6ccff;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #e7ccff;
+        }
+
+        .event,
+        .club {
+            background: rgba(60, 0, 90, 0.35);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(200, 150, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .event:hover,
+        .club:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(160, 80, 255, 0.45);
+        }
+
+        .event h3,
+        .club h3 {
+            font-size: 18px;
+            color: #e8ccff;
+        }
+
+        .event p,
+        .club p {
+            font-size: 14px;
+            color: #d8baff;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Student Panel</h2>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Upcoming Events</a>
+        <a href="#">My Registrations</a>
+        <a href="#">Clubs</a>
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Welcome, Student</h1>
+            <div class="profile">Akshaya ⭐</div>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Events Registered</h3>
+                <p>05</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Upcoming Events</h3>
+                <p>03</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Joined Clubs</h3>
+                <p>02</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Certificates</h3>
+                <p>04</p>
+            </div>
+        </div>
+
+        <!-- UPCOMING EVENTS -->
+        <div class="section">
+            <h2>Upcoming Events</h2>
+
+            <div class="event">
+                <h3>Tech Innovators Workshop</h3>
+                <p>Date: 18 Dec 2025 • Time: 11 AM • Venue: Conference Hall 1</p>
+            </div>
+
+            <div class="event">
+                <h3>Campus Cultural Fest</h3>
+                <p>Date: 21 Dec 2025 • Time: 2 PM • Venue: Conference Hall 1</p>
+            </div>
+        </div>
+
+        <!-- CLUBS JOINED -->
+        <div class="section">
+            <h2>Your Clubs</h2>
+
+            <div class="club">
+                <h3>Robotics Club</h3>
+                <p>Active Member</p>
+            </div>
+
+            <div class="club">
+                <h3>Photography Club</h3>
+                <p>Active Member</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

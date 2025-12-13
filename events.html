@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Management Module</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #0b0b0d;
+        color: #fff;
+    }
+
+    /* Header */
+    .header {
+        background: #14001f;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        color: #b75cff;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba(150, 33, 255, 0.4);
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: #1a1a1d;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #33004b;
+        box-shadow: 0 0 25px rgba(89, 0, 156, 0.5);
+    }
+
+    h2 {
+        color: #d68cff;
+        font-size: 22px;
+        margin-bottom: 15px;
+        border-left: 5px solid #b75cff;
+        padding-left: 10px;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #e6c6ff;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #4f0074;
+        background: #0f0f11;
+        color: #fff;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    .two-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: #b75cff;
+        font-size: 16px;
+        color: white;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #d68cff;
+    }
+
+    .section-box {
+        background: #121214;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 4px solid #b75cff;
+        margin-bottom: 25px;
+    }
+
+    .qr-box, .certificate-box {
+        text-align: center;
+        padding: 20px;
+        background: #14001f;
+        border-radius: 12px;
+        border: 1px solid #3a0058;
+        margin-top: 10px;
+    }
+
+    .qr-placeholder {
+        width: 150px;
+        height: 150px;
+        background: #2b0141;
+        border-radius: 10px;
+        margin: auto;
+        border: 2px dashed #b75cff;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="header">Event Management Module</div>
+
+<div class="container">
+
+    <!-- Create Event Section -->
+    <div class="section-box">
+        <h2>Create New Event</h2>
+
+        <label>Event Name</label>
+        <input type="text" placeholder="Enter event name">
+
+        <label>Event Poster</label>
+        <input type="file">
+
+        <div class="two-grid">
+            <div>
+                <label>Start Date</label>
+                <input type="date">
+            </div>
+            <div>
+                <label>End Date (for multi-day events)</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <label>Entry Fee (₹)</label>
+        <input type="number" placeholder="0 for free event">
+
+        <label>Event Rules</label>
+        <textarea placeholder="Add all event rules here..."></textarea>
+
+        <label>Judges</label>
+        <textarea placeholder="Enter judge names..."></textarea>
+
+        <label>Prizes</label>
+        <textarea placeholder="1st Prize, 2nd Prize, Consolation..."></textarea>
+
+        <button class="btn">Create Event</button>
+    </div>
+
+    <!-- Registration Section -->
+    <div class="section-box">
+        <h2>Online Registration + Payment</h2>
+
+        <label>Participant Name</label>
+        <input type="text" placeholder="Enter full name">
+
+        <div class="two-grid">
+            <div>
+                <label>Email</label>
+                <input type="email">
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <label>Select Event</label>
+        <select>
+            <option>Photography Contest</option>
+            <option>Coding Hackathon</option>
+            <option>Dance Battle</option>
+            <option>Drama Competition</option>
+        </select>
+
+        <label>Payment Method</label>
+        <select>
+            <option>UPI</option>
+            <option>Card Payment</option>
+            <option>Net Banking</option>
+        </select>
+
+        <button class="btn">Pay & Register</button>
+    </div>
+
+    <!-- QR Code Check-in -->
+    <div class="section-box">
+        <h2>Event Check-in (QR Code)</h2>
+        <div class="qr-box">
+            <div class="qr-placeholder"></div>
+            <p style="color:#bbb; margin-top:10px;">QR Code will appear here</p>
+            <button class="btn" style="margin-top:15px;">Generate QR Code</button>
+        </div>
+    </div>
+
+    <!-- Certificate Section -->
+    <div class="section-box">
+        <h2>Auto Certificate Generation</h2>
+
+        <label>Participant Name</label>
+        <input type="text" placeholder="Enter name for certificate">
+
+        <label>Event Name</label>
+        <input type="text" placeholder="Enter event title">
+
+        <div class="certificate-box">
+            <p style="margin-bottom:10px;">Certificate Preview (Placeholder)</p>
+            <div class="qr-placeholder"></div>
+        </div>
+
+        <button class="btn">Generate Certificate</button>
+    </div>
+
+</div>
+
+</body>
+</html>

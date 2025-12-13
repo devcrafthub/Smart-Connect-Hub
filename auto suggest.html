@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Features</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #0b0b0d;
+        color: #fff;
+        transition: 0.4s;
+    }
+
+    /* Dark Mode Toggle */
+    .toggle-container {
+        text-align: right;
+        padding: 15px;
+        background: #14001f;
+    }
+    .toggle-btn {
+        padding: 8px 16px;
+        background: #b75cff;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        border: none;
+    }
+
+    .header {
+        text-align: center;
+        font-size: 28px;
+        color: #b75cff;
+        padding: 20px;
+        background: #14001f;
+        box-shadow: 0 0 20px rgba(150, 33, 255, .4);
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 25px auto;
+        background: #1a1a1d;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #33004b;
+        box-shadow: 0 0 25px rgba(89, 0, 156, 0.5);
+    }
+
+    h2 {
+        color: #d68cff;
+        font-size: 22px;
+        margin-bottom: 10px;
+        border-left: 5px solid #b75cff;
+        padding-left: 10px;
+    }
+
+    .section {
+        padding: 18px;
+        background: #121214;
+        border-radius: 12px;
+        border-left: 4px solid #b75cff;
+        margin-bottom: 30px;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #e6c6ff;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #4f0074;
+        background: #0f0f11;
+        color: white;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    textarea { height: 90px; }
+
+    .btn {
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        background: #b75cff;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    .btn:hover { background: #d68cff; }
+
+    /* Chat UI */
+    .chat-box {
+        height: 180px;
+        overflow-y: auto;
+        padding: 10px;
+        background: #0f0f11;
+        border-radius: 10px;
+        border: 1px solid #3a0058;
+    }
+
+    .msg {
+        margin: 8px 0;
+        padding: 8px 10px;
+        background: #2b0141;
+        width: fit-content;
+        border-radius: 7px;
+        max-width: 75%;
+    }
+
+    .msg.me {
+        background: #5d0098;
+        margin-left: auto;
+        color: #fff;
+    }
+
+    /* Leaderboard */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #0f0f11;
+        margin-top: 10px;
+        color: #e9d8ff;
+    }
+
+    th, td {
+        border: 1px solid #3a0058;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background: #2a0141;
+    }
+
+    /* Weekly Timetable */
+    .week-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .day-box {
+        background: #210030;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #4f0074;
+        min-height: 120px;
+    }
+
+    .template-preview {
+        height: 150px;
+        background: #200030;
+        border: 1px dashed #b75cff;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="toggle-container">
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="header">Premium Advanced Features</div>
+
+<div class="container">
+
+    <!-- AI Recommendation -->
+    <div class="section">
+        <h2>AI-based Event Recommendations</h2>
+        <label>Select Your Interests</label>
+        <select>
+            <option>Technical</option>
+            <option>Cultural</option>
+            <option>Sports</option>
+            <option>Literary</option>
+        </select>
+
+        <button class="btn">Get AI Recommendations</button>
+
+        <textarea placeholder="AI recommended events will appear here..." disabled></textarea>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="section">
+        <h2>AI Chatbot - Event Help</h2>
+
+        <div class="chat-box">
+            <div class="msg">Hello! Ask me anything about events 😊</div>
+            <div class="msg me">Show me coding events</div>
+        </div>
+
+        <input type="text" placeholder="Type your question...">
+        <button class="btn">Send</button>
+    </div>
+
+    <!-- Poster Generator -->
+    <div class="section">
+        <h2>Auto Poster Generator</h2>
+
+        <label>Choose Template</label>
+        <select>
+            <option>Template 1 - Modern</option>
+            <option>Template 2 - Minimal</option>
+            <option>Template 3 - Neon Purple</option>
+        </select>
+
+        <div class="template-preview"></div>
+
+        <label>Event Title</label>
+        <input type="text" placeholder="Enter poster title">
+
+        <button class="btn">Generate Poster</button>
+    </div>
+
+    <!-- Internal Chat -->
+    <div class="section">
+        <h2>Admin + Club Coordinator Chat</h2>
+
+        <div class="chat-box">
+            <div class="msg">Meeting at 4 PM</div>
+            <div class="msg me">Okay I will join!</div>
+        </div>
+
+        <input type="text" placeholder="Type message">
+        <button class="btn">Send</button>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="section">
+        <h2>Event Leaderboard</h2>
+
+        <table>
+            <tr><th>Rank</th><th>Name</th><th>Score</th></tr>
+            <tr><td>1</td><td>Santhosh</td><td>98</td></tr>
+            <tr><td>2</td><td>Priya</td><td>92</td></tr>
+            <tr><td>3</td><td>Arjun</td><td>90</td></tr>
+        </table>
+    </div>
+
+    <!-- Feedback -->
+    <div class="section">
+        <h2>Event Feedback & Rating</h2>
+
+        <label>Your Rating (1–5)</label>
+        <select>
+            <option>5 ★★★★★</option>
+            <option>4 ★★★★☆</option>
+            <option>3 ★★★☆☆</option>
+            <option>2 ★★☆☆☆</option>
+            <option>1 ★☆☆☆☆</option>
+        </select>
+
+        <label>Your Feedback</label>
+        <textarea placeholder="Write your feedback..."></textarea>
+
+        <button class="btn">Submit Feedback</button>
+    </div>
+
+    <!-- Weekly Timetable -->
+    <div class="section">
+        <h2>Weekly Event Timetable</h2>
+
+        <div class="week-grid">
+            <div class="day-box"><b>Mon</b><br>Coding Workshop</div>
+            <div class="day-box"><b>Tue</b><br>Dance Practice</div>
+            <div class="day-box"><b>Wed</b><br>Photography Walk</div>
+            <div class="day-box"><b>Thu</b><br>Literary Club Meet</div>
+            <div class="day-box"><b>Fri</b><br>Sports Tryouts</div>
+            <div class="day-box"><b>Sat</b><br>Cultural Rehearsal</div>
+            <div class="day-box"><b>Sun</b><br>No Events</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggleMode() {
+    let bg = document.body.style.background;
+
+    if (bg === "white") {
+        document.body.style.background = "#0b0b0d";
+        document.body.style.color = "white";
+    } else {
+        document.body.style.background = "white";
+        document.body.style.color = "black";
+    }
+}
+</script>
+
+</body>
+</html>

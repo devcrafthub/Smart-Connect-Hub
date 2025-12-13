@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Announcements & Notifications</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0d0b14;
+        color: #e5d4ff;
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        background: linear-gradient(90deg, #6a0dad, #421064);
+        padding: 20px;
+        text-align: center;
+        font-size: 28px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        background: #1a1524;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 12px rgba(140, 60, 255, 0.4);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #d09cff;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        background: #150f1f;
+        border: 1px solid #7645c7;
+        border-radius: 8px;
+        color: #e5d4ff;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        background: #6a0dad;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #8d2aff;
+    }
+
+    .announcement {
+        background: #241b35;
+        padding: 12px;
+        border-left: 4px solid #8e34ff;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .announcement h3 {
+        margin: 0;
+        color: #c089ff;
+    }
+
+    .announcement small {
+        color: #b9a3e6;
+    }
+
+    /* Popup Notification */
+    #popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #6a0dad;
+        padding: 15px 20px;
+        color: white;
+        border-radius: 12px;
+        display: none;
+        box-shadow: 0 0 14px rgba(160, 80, 255, 0.6);
+        animation: fadeIn 0.5s;
+        max-width: 250px;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+</style>
+</head>
+<body>
+
+<header>📢 Announcements & Notifications</header>
+
+<div class="container">
+
+    <!-- Admin Announcement Creator -->
+    <div class="card">
+        <h2>Create Announcement</h2>
+
+        <label>Announcement Title</label>
+        <input type="text" id="title" placeholder="Enter title">
+
+        <label>Message</label>
+        <textarea id="message" rows="3" placeholder="Enter announcement message"></textarea>
+
+        <label>Category</label>
+        <select id="category">
+            <option value="College-Wide">College-Wide</option>
+            <option value="Club Event">Club Event</option>
+            <option value="Department">Department</option>
+        </select>
+
+        <button onclick="postAnnouncement()">Post Announcement</button>
+    </div>
+
+    <!-- Display Announcements -->
+    <div class="card">
+        <h2>Recent Announcements</h2>
+        <div id="announcementList"></div>
+    </div>
+
+</div>
+
+<!-- Popup Notification -->
+<div id="popup"></div>
+
+<script>
+let announcements = [];
+
+// Post Announcement
+function postAnnouncement() {
+    let title = document.getElementById("title").value;
+    let message = document.getElementById("message").value;
+    let category = document.getElementById("category").value;
+
+    if (!title || !message) {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    let time = new Date().toLocaleString();
+
+    let ann = { title, message, category, time };
+    announcements.push(ann);
+
+    displayAnnouncements();
+    showPopup(title);
+
+    sendEmailAlert(title);
+    sendSMSAlert(title);
+
+    document.getElementById("title").value = "";
+    document.getElementById("message").value = "";
+}
+
+// Load Announcements
+function displayAnnouncements() {
+    let box = document.getElementById("announcementList");
+    box.innerHTML = "";
+
+    announcements.slice().reverse().forEach(a => {
+        box.innerHTML += `
+            <div class="announcement">
+                <h3>${a.title}</h3>
+                <small>${a.category} | ${a.time}</small>
+                <p>${a.message}</p>
+            </div>
+        `;
+    });
+}
+
+// Popup Notification
+function showPopup(title) {
+    let popup = document.getElementById("popup");
+    popup.innerText = "New Announcement: " + title;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 4000);
+}
+
+// Simulated Email Alert
+function sendEmailAlert(title) {
+    console.log("📧 Email sent: " + title);
+}
+
+// Simulated SMS Alert
+function sendSMSAlert(title) {
+    console.log("📩 SMS sent: " + title);
+}
+</script>
+
+</body>
+</html>

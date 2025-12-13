@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Analytics Dashboard</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0d0b14;
+        color: #e3d4ff;
+    }
+
+    header {
+        background: linear-gradient(90deg,#6a0dad,#3c0a6b);
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 2px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        background: #1a1625;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 12px rgba(106,0,173,0.4);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #c792ff;
+    }
+
+    canvas {
+        background: #150f1f;
+        border-radius: 10px;
+        padding: 10px;
+    }
+</style>
+</head>
+<body>
+
+<header>📊 Analytics Module</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Event-wise Participation</h2>
+        <canvas id="eventParticipation"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Club Performance Analytics</h2>
+        <canvas id="clubPerformance"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Registered vs Attended Comparison</h2>
+        <canvas id="regVsAttend"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Financial Analytics (Revenue from Events)</h2>
+        <canvas id="finance"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Most Engaging Club</h2>
+        <p id="bestClub" style="font-size:22px; color:#b388ff; font-weight:bold;"></p>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+/* ---------- SAMPLE DATA ---------- */
+const eventNames = ["Hackathon", "Dance Battle", "Paper Presentation", "Coding Contest", "Sports Fest"];
+const participation = [120, 80, 95, 150, 200];
+
+const clubNames = ["Tech Club", "Cultural Club", "Sports Club", "Literary Club"];
+const clubScores = [85, 70, 95, 60];   // performance score
+
+const registered = [150, 100, 140, 180];
+const attended = [120, 80, 110, 160];
+
+const revenue = [30000, 15000, 20000, 35000];
+
+/* ---------- MOST ENGAGING CLUB ---------- */
+let maxScore = Math.max(...clubScores);
+let topClub = clubNames[clubScores.indexOf(maxScore)];
+document.getElementById("bestClub").innerText = "🏆 " + topClub;
+
+/* ---------- CHART 1: Event Participation ---------- */
+new Chart(document.getElementById('eventParticipation'), {
+    type: 'bar',
+    data: {
+        labels: eventNames,
+        datasets: [{
+            label: "Participants",
+            data: participation,
+            backgroundColor: "rgba(150,80,255,0.7)"
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ---------- CHART 2: Club Performance ---------- */
+new Chart(document.getElementById('clubPerformance'), {
+    type: 'radar',
+    data: {
+        labels: clubNames,
+        datasets: [{
+            label: "Performance Score",
+            data: clubScores,
+            backgroundColor: "rgba(170,90,255,0.4)",
+            borderColor: "#a45bff"
+        }]
+    }
+});
+
+/* ---------- CHART 3: Registered vs Attended ---------- */
+new Chart(document.getElementById('regVsAttend'), {
+    type: 'line',
+    data: {
+        labels: eventNames.slice(0,4),
+        datasets: [
+            {
+                label: "Registered",
+                data: registered,
+                borderColor: "#b266ff",
+                fill: false
+            },
+            {
+                label: "Attended",
+                data: attended,
+                borderColor: "#ff66ff",
+                fill: false
+            }
+        ]
+    }
+});
+
+/* ---------- CHART 4: Financial Analytics ---------- */
+new Chart(document.getElementById('finance'), {
+    type: 'pie',
+    data: {
+        labels: eventNames.slice(0,4),
+        datasets: [{
+            data: revenue,
+            backgroundColor: [
+                "rgba(140,60,255,0.7)",
+                "rgba(200,80,255,0.7)",
+                "rgba(120,40,200,0.7)",
+                "rgba(180,100,255,0.7)"
+            ]
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

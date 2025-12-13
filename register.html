@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Portal - Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #000000, #250036, #4a007a);
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-card {
+            background: rgba(20, 0, 30, 0.55);
+            padding: 35px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 25px rgba(140, 0, 255, 0.35);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            color: #d8b4ff;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #b48cff;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 10px;
+            border: none;
+            border-bottom: 2px solid #7e2bff;
+            background: transparent;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #b78cff;
+            font-size: 14px;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus ~ label,
+        .input-box input:valid ~ label {
+            top: 0;
+            font-size: 12px;
+            color: #e1c2ff;
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4a007a, #b537f2);
+            padding: 12px 0;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #fff;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .links a {
+            color: #d1a6ff;
+            font-size: 13px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="login-card">
+        <h2>Create Account</h2>
+        <p class="subtitle">Register to continue</p>
+
+        <form>
+            <div class="input-box">
+                <input type="text" required>
+                <label>Full Name</label>
+            </div>
+
+            <div class="input-box">
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="input-box">
+                <input type="text" required>
+                <label>Phone Number</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" required>
+                <label>Confirm Password</label>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+
+            <div class="links">
+                <a href="login.html">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

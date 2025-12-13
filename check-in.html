@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Attendance & Check-in | Event Portal</title>
+
+<!-- CSS -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0d0b14;
+        font-family: Arial, sans-serif;
+        color: #e4d6ff;
+    }
+
+    header {
+        background: linear-gradient(90deg, #6a0dad, #431169);
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        background: #1c1526;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 12px rgba(140, 60, 255, 0.4);
+    }
+
+    h2 {
+        color: #c792ff;
+        margin-top: 0;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        background: #150f1f;
+        border: 1px solid #7645c7;
+        border-radius: 8px;
+        margin: 5px 0 15px 0;
+        color: #d8c4ff;
+    }
+
+    button {
+        background: #6a0dad;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #8e34ff;
+    }
+
+    #qrPreview {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    #scanner {
+        width: 100%;
+        height: 300px;
+        margin-top: 15px;
+        background: black;
+        border-radius: 12px;
+    }
+
+    table {
+        width: 100%;
+        background: #150f1f;
+        color: #ede0ff;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #5f3b95;
+        text-align: center;
+    }
+
+    th {
+        background: #5a2ca4;
+    }
+</style>
+</head>
+
+<body>
+
+<header>📍 Attendance & QR Check-In</header>
+
+<div class="container">
+
+    <!-- QR Code Generator -->
+    <div class="card">
+        <h2>Generate QR Code for Event</h2>
+
+        <label>Event Name</label>
+        <input type="text" id="eventName" placeholder="Enter Event Name">
+
+        <label>Event ID</label>
+        <input type="text" id="eventID" placeholder="Enter Event Code">
+
+        <button onclick="generateQR()">Generate QR Code</button>
+
+        <div id="qrPreview"></div>
+    </div>
+
+    <!-- QR Scanner -->
+    <div class="card">
+        <h2>Check-In Scanner</h2>
+
+        <button onclick="startScan()">Start Scanner</button>
+        <button onclick="stopScan()">Stop Scanner</button>
+
+        <div id="scanner"></div>
+
+        <h3>Live Attendees: <span id="count">0</span></h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceList"></tbody>
+        </table>
+
+        <button onclick="exportCSV()">Export Attendance (CSV)</button>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script>
+let qrScanner;
+let attendees = [];
+
+// Generate QR
+function generateQR() {
+    let eventName = document.getElementById("eventName").value;
+    let eventID = document.getElementById("eventID").value;
+
+    let text = `${eventName} | ${eventID}`;
+
+    document.getElementById("qrPreview").innerHTML = "";
+
+    new QRCode(document.getElementById("qrPreview"), {
+        text: text,
+        width: 200,
+        height: 200,
+        colorDark : "#6a0dad",
+        colorLight : "#ffffff",
+    });
+}
+
+// Start Scanner
+function startScan() {
+    qrScanner = new Html5Qrcode("scanner");
+
+    qrScanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        decodedText => checkIn(decodedText)
+    );
+}
+
+// Stop Scanner
+function stopScan() {
+    if (qrScanner) qrScanner.stop();
+}
+
+// Check-in function
+function checkIn(data) {
+    let time = new Date().toLocaleTimeString();
+    attendees.push({ name: data, time });
+
+    let row = `<tr><td>${data}</td><td>${time}</td></tr>`;
+    document.getElementById("attendanceList").innerHTML += row;
+
+    document.getElementById("count").innerText = attendees.length;
+}
+
+// Export CSV
+function exportCSV() {
+    let csv = "Name,Time\n";
+
+    attendees.forEach(a => {
+        csv += `${a.name},${a.time}\n`;
+    });
+
+    let blob = new Blob([csv], { type: "text/csv" });
+    let link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "attendance.csv";
+    link.click();
+}
+</script>
+
+</body>
+</html>

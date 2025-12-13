@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Dashboard</title>
+    <style>
+        /* ===== General Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000, #250036, #4a007a);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 240px;
+            height: 100%;
+            background: rgba(20, 0, 30, 0.55);
+            backdrop-filter: blur(14px);
+            padding: 25px;
+            border-right: 1px solid rgba(200, 150, 255, 0.2);
+            box-shadow: 2px 0 12px rgba(150,0,255,0.2);
+        }
+        .sidebar h2 {
+            text-align:center;
+            color:#d8b4ff;
+            margin-bottom:30px;
+        }
+        .sidebar a {
+            display:block;
+            color:#dfc6ff;
+            padding:12px;
+            margin-bottom:8px;
+            text-decoration:none;
+            border-radius:10px;
+            transition:0.3s;
+        }
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(150,50,255,0.35);
+            box-shadow:0 0 10px rgba(150,50,255,0.4);
+        }
+
+        /* ===== Main Content ===== */
+        .main {
+            flex:1;
+            padding:30px 40px;
+            overflow-y:auto;
+            min-height:100vh;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+        .header h1 {
+            font-size:28px;
+            color:#e7ccff;
+        }
+        .header .profile {
+            background: rgba(255,255,255,0.1);
+            padding:6px 15px;
+            border-radius:30px;
+            font-size:14px;
+            color:#e7ccff;
+        }
+
+        /* ===== Stats Cards ===== */
+        .stats {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:20px;
+            margin-bottom:35px;
+        }
+        .stat-card {
+            background: rgba(80,0,120,0.35);
+            border-radius:18px;
+            padding:25px;
+            text-align:center;
+            border:1px solid rgba(200,150,255,0.2);
+            box-shadow:0 0 20px rgba(120,0,210,0.3);
+            transition:0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow:0 0 30px rgba(160,80,255,0.45);
+        }
+        .stat-card h3 {
+            font-size:18px;
+            margin-bottom:10px;
+            color:#e6ccff;
+        }
+        .stat-card p {
+            font-size:28px;
+            font-weight:600;
+        }
+
+        /* ===== Events Table ===== */
+        .table-container {
+            overflow-x:auto;
+        }
+        table {
+            width:100%;
+            border-collapse: collapse;
+            margin-bottom:30px;
+        }
+        th, td {
+            padding:12px 15px;
+            text-align:left;
+        }
+        th {
+            background: rgba(100,0,180,0.4);
+            color:#fff;
+            font-size:14px;
+            border-bottom:1px solid rgba(200,150,255,0.2);
+        }
+        tr {
+            background: rgba(60,0,90,0.35);
+            border-radius:12px;
+            transition:0.3s;
+        }
+        tr:hover {
+            transform:translateY(-2px);
+            box-shadow:0 0 20px rgba(160,80,255,0.45);
+        }
+        td {
+            color:#d8baff;
+            font-size:14px;
+        }
+        .btn {
+            padding:6px 12px;
+            border-radius:8px;
+            background: linear-gradient(135deg,#4a007a,#b537f2);
+            color:#fff;
+            text-decoration:none;
+            font-size:13px;
+            transition:0.3s;
+        }
+        .btn:hover { opacity:0.85; }
+
+        /* ===== Add Event Button ===== */
+        .add-event {
+            display:inline-block;
+            margin-bottom:15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="#" class="active">Manage Events</a>
+        <a href="clubs.html">Clubs</a>
+        <a href="students.html">Students</a>
+        <a href="profile.html">Profile</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Events Dashboard</h1>
+            <div class="profile">Akshaya Admin ⭐</div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Events</h3>
+                <p>12</p>
+            </div>
+            <div class="stat-card">
+                <h3>Upcoming Events</h3>
+                <p>5</p>
+            </div>
+            <div class="stat-card">
+                <h3>Registrations</h3>
+                <p>320</p>
+            </div>
+        </div>
+
+        <!-- Add Event Button -->
+        <a href="#" class="btn add-event">+ Add New Event</a>
+
+        <!-- Events Table -->
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>Tech Innovators Workshop</td>
+                    <td>18 Dec 2025</td>
+                    <td>11 AM</td>
+                    <td>Active</td>
+                    <td><a href="#" class="btn">Edit</a> <a href="#" class="btn">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>Campus Cultural Fest</td>
+                    <td>21 Dec 2025</td>
+                    <td>5 PM</td>
+                    <td>Upcoming</td>
+                    <td><a href="#" class="btn">Edit</a> <a href="#" class="btn">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>Robotics Competition</td>
+                    <td>25 Dec 2025</td>
+                    <td>10 AM</td>
+                    <td>Upcoming</td>
+                    <td><a href="#" class="btn">Edit</a> <a href="#" class="btn">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

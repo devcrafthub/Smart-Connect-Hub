@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clubs Management Module</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #0b0b0d;
+        color: #fff;
+    }
+
+    .header {
+        background: #14001f;
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 600;
+        color: #b75cff;
+        box-shadow: 0 0 20px rgba(150, 33, 255, .4);
+    }
+
+    .container {
+        width: 90%;
+        max-width: 950px;
+        margin: 25px auto;
+        background: #1a1a1d;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #33004b;
+        box-shadow: 0 0 25px rgba(89, 0, 156, 0.5);
+    }
+
+    h2 {
+        color: #d68cff;
+        font-size: 22px;
+        margin-bottom: 10px;
+        border-left: 4px solid #b75cff;
+        padding-left: 10px;
+    }
+
+    .section {
+        background: #121214;
+        padding: 18px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        border-left: 4px solid #b75cff;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #e6c6ff;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        background: #0f0f11;
+        border: 1px solid #4f0074;
+        color: white;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    textarea { height: 80px; }
+
+    .two-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: #b75cff;
+        font-size: 16px;
+        color: white;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn:hover { background: #d68cff; }
+
+    .gallery-box {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .gallery-item {
+        height: 120px;
+        background: #210030;
+        border-radius: 10px;
+        border: 1px solid #4f0074;
+        box-shadow: 0 0 12px rgba(150, 33, 255, 0.4);
+    }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+    Clubs Management Module
+</div>
+
+<div class="container">
+
+    <!-- Create Club -->
+    <div class="section">
+        <h2>Create a New Club</h2>
+
+        <label>Club Name</label>
+        <input type="text" placeholder="Enter club name">
+
+        <label>Club Category</label>
+        <select>
+            <option>Technical</option>
+            <option>Cultural</option>
+            <option>Sports</option>
+            <option>Literary</option>
+        </select>
+
+        <label>Description</label>
+        <textarea placeholder="Enter club description..."></textarea>
+
+        <label>Upload Club Logo</label>
+        <input type="file">
+
+        <button class="btn">Create Club</button>
+    </div>
+
+    <!-- Club Hierarchy -->
+    <div class="section">
+        <h2>Club Hierarchy</h2>
+
+        <div class="two-grid">
+            <div>
+                <label>President</label>
+                <input type="text" placeholder="Enter name">
+            </div>
+            <div>
+                <label>Vice President</label>
+                <input type="text" placeholder="Enter name">
+            </div>
+        </div>
+
+        <label>Secretary</label>
+        <input type="text" placeholder="Enter name">
+
+        <label>Members (comma-separated)</label>
+        <textarea placeholder="Enter member names..."></textarea>
+
+        <button class="btn">Update Hierarchy</button>
+    </div>
+
+    <!-- Auto-linked Events -->
+    <div class="section">
+        <h2>Club Events (Auto Linked)</h2>
+
+        <label>Select Club</label>
+        <select>
+            <option>Photography Club</option>
+            <option>Coding Club</option>
+            <option>Dance Club</option>
+        </select>
+
+        <label>Event List</label>
+        <textarea placeholder="Events automatically linked from Events Module..." disabled></textarea>
+
+        <button class="btn">Refresh Events</button>
+    </div>
+
+    <!-- Announcements -->
+    <div class="section">
+        <h2>Club Announcements</h2>
+
+        <label>Announcement Title</label>
+        <input type="text" placeholder="Enter announcement title">
+
+        <label>Message</label>
+        <textarea placeholder="Enter announcement details..."></textarea>
+
+        <button class="btn">Post Announcement</button>
+    </div>
+
+    <!-- Club Gallery -->
+    <div class="section">
+        <h2>Club Gallery</h2>
+
+        <label>Upload Images</label>
+        <input type="file" multiple>
+
+        <button class="btn">Upload to Gallery</button>
+
+        <div class="gallery-box">
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
